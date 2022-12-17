@@ -5,8 +5,11 @@ import "fmt"
 const englishHelloPrefix = "Hello"
 
 func Hello(name string) string {
-	output := fmt.Sprintf("%v, %v", englishHelloPrefix, name)
-	return output
+	if name == "" {
+		name = "world"
+	}
+
+	return fmt.Sprintf("%v, %v", englishHelloPrefix, name)
 }
 
 func main() {
