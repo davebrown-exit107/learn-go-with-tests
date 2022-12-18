@@ -2,9 +2,7 @@ package iteration
 
 import "fmt"
 
-const repeatCount = 5
-
-func Repeat(character string) (repeated string) {
+func Repeat(character string, repeatCount int) (repeated string) {
 	for i := 0; i < repeatCount; i++ {
 		repeated += character
 	}
