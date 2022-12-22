@@ -18,60 +18,62 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
+	checkArraySums := func(t testing.TB, got, want []int) {
+		t.Helper()
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
+	}
+
 	t.Run("two full arrays", func(t *testing.T) {
 		got := SumAll([]int{1, 2}, []int{0, 9})
 		want := []int{3, 9}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 
 	t.Run("one full array and one empty array", func(t *testing.T) {
 		got := SumAll([]int{}, []int{0, 9})
 		want := []int{0, 9}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 
 	t.Run("two empty arrays", func(t *testing.T) {
 		got := SumAll([]int{}, []int{})
 		want := []int{0, 0}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 }
 
 func TestSumAllTails(t *testing.T) {
+	checkArraySums := func(t testing.TB, got, want []int) {
+		t.Helper()
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
+	}
+
 	t.Run("two full arrays", func(t *testing.T) {
 		got := SumAllTails([]int{1, 2}, []int{0, 9})
 		want := []int{2, 9}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 
 	t.Run("one full array and one empty array", func(t *testing.T) {
 		got := SumAllTails([]int{}, []int{0, 9})
 		want := []int{0, 9}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 
 	t.Run("two empty arrays", func(t *testing.T) {
 		got := SumAllTails([]int{}, []int{})
 		want := []int{0, 0}
 
-		if !reflect.DeepEqual(got, want) {
-			t.Errorf("got %v want %v", got, want)
-		}
+		checkArraySums(t, got, want)
 	})
 }
 
