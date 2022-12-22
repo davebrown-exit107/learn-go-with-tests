@@ -9,14 +9,22 @@ func Sum(numbers []int) (total int) {
 
 func SumAll(arrays ...[]int) (sums []int) {
 	for _, array := range arrays {
-		sums = append(sums, Sum(array))
+		if len(array) == 0 {
+			sums = append(sums, 0)
+		} else {
+			sums = append(sums, Sum(array))
+		}
 	}
 	return
 }
 
 func SumAllTails(arrays ...[]int) (sums []int) {
 	for _, array := range arrays {
-		sums = append(sums, Sum(array[1:]))
+		if len(array) == 0 {
+			sums = append(sums, 0)
+		} else {
+			sums = append(sums, Sum(array[1:]))
+		}
 	}
 	return
 }
