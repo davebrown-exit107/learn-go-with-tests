@@ -1,5 +1,9 @@
-package main
+package smi
 
-func Perimeter(w, l float64) (perimeter float64) {
-	return w*2 + l*2
+func Perimeter(w, h float64) (perimeter float64) {
+	return (w + h) * 2
+}
+
+func Area(w, h float64) (area float64) {
+	return w * h
 }
