@@ -3,22 +3,29 @@ package bitcoin
 
 import "fmt"
 
+// The currency bitcoin
+type Bitcoin int
+
+func (b Bitcoin) String() string {
+	return fmt.Sprintf("%d BTC", b)
+}
+
 // A wallet type to allow tracking of the balance
 type Wallet struct {
-	balance int // The balance of the wallet
+	balance Bitcoin // The balance of the wallet
 }
 
 // Deposit bitcoin in the wallet
-func (w *Wallet) Deposit(amt int) error {
-	if amt >= 0 {
-		w.balance += amt
-		return nil
-	} else {
-		return fmt.Errorf("Cannot deposit a negative amount %d", amt)
-	}
+func (w *Wallet) Deposit(amt Bitcoin) {
+	w.balance += amt
+}
+
+// Withdraw bitcoin fron the wallet
+func (w *Wallet) Withdraw(amt Bitcoin) {
+	w.balance -= amt
 }
 
 // Return the balance of the bitcoin in the wallet
-func (w *Wallet) Balance() (balance int) {
+func (w *Wallet) Balance() (balance Bitcoin) {
 	return w.balance
 }
