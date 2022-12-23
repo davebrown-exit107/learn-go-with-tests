@@ -39,3 +39,19 @@ func (c Circle) Perimeter() (perimeter float64) {
 func (c Circle) Area() (area float64) {
 	return math.Pi * math.Pow(c.R, 2)
 }
+
+// Triangle shape
+type Triangle struct {
+	B float64 // Base
+	H float64 // Height
+}
+
+// Calculate the perimeter of a Rectangle
+func (t Triangle) Perimeter() (perimeter float64) {
+	return 0.0
+}
+
+// Calculate the area of a Rectangle
+func (t Triangle) Area() (area float64) {
+	return (t.H * t.B) / 2.0
+}

@@ -18,6 +18,12 @@ func TestArea(t *testing.T) {
 			shape: Circle{5},
 			want:  78.53981633974483,
 		},
+		"triangle": {
+			shape: Triangle{
+				B: 1,
+				H: 4},
+			want: 2,
+		},
 	}
 
 	for name, curTest := range tests {
@@ -44,6 +50,14 @@ func TestPerimeter(t *testing.T) {
 			shape: Circle{5},
 			want:  31.41592653589793,
 		},
+		/* This hasn't been implemented yet so I'm leaving the test commented out
+		"triangle": {
+			shape: Triangle{
+				B: 1,
+				H: 4},
+			want:  31.41592653589793,
+		},
+		*/
 	}
 
 	for name, curTest := range tests {
