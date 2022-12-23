@@ -5,25 +5,50 @@ import (
 	"testing"
 )
 
-func TestRectangle(t *testing.T) {
-	t.Run("perimeter", func(t *testing.T) {
-		testRectangle := Rectangle{W: 10, H: 10}
-		got := testRectangle.Perimeter()
-		want := 40.0
+func TestArea(t *testing.T) {
+	checkArea := func(t testing.TB, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Area()
 
 		if got != want {
 			t.Errorf("wanted: %.2f got: %.2f", want, got)
 		}
+	}
+
+	t.Run("rectangle", func(t *testing.T) {
+		rectangle := Rectangle{W: 10, H: 10}
+		want := 100.0
+		checkArea(t, rectangle, want)
+
 	})
 
-	t.Run("area", func(t *testing.T) {
-		testRectangle := Rectangle{W: 10, H: 10}
-		got := testRectangle.Area()
-		want := 100.0
+	t.Run("circle", func(t *testing.T) {
+		circle := Circle{R: 5}
+		want := 78.53981633974483
+		checkArea(t, circle, want)
+	})
+}
+
+func TestPerimeter(t *testing.T) {
+	checkPerimeter := func(t testing.TB, shape Shape, want float64) {
+		t.Helper()
+		got := shape.Perimeter()
 
 		if got != want {
 			t.Errorf("wanted: %.2f got: %.2f", want, got)
 		}
+	}
+
+	t.Run("rectangle", func(t *testing.T) {
+		rectangle := Rectangle{W: 10, H: 10}
+		want := 40.0
+		checkPerimeter(t, rectangle, want)
+	})
+
+	t.Run("circle", func(t *testing.T) {
+		circle := Circle{R: 5}
+		want := 31.41592653589793
+		checkPerimeter(t, circle, want)
 	})
 }
 
@@ -39,28 +64,6 @@ func ExampleRectangle_Area() {
 	area := testRectangle.Area()
 	fmt.Println(area)
 	// Output: 100
-}
-
-func TestCircle(t *testing.T) {
-	t.Run("perimeter", func(t *testing.T) {
-		testCircle := Circle{R: 5}
-		got := testCircle.Perimeter()
-		want := 31.41592653589793
-
-		if got != want {
-			t.Errorf("wanted: %.2f got: %.2f", want, got)
-		}
-	})
-
-	t.Run("area", func(t *testing.T) {
-		testCircle := Circle{R: 5}
-		got := testCircle.Area()
-		want := 78.53981633974483
-
-		if got != want {
-			t.Errorf("wanted: %.2f got: %.2f", want, got)
-		}
-	})
 }
 
 func ExampleCircle_Perimeter() {

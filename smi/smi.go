@@ -3,6 +3,12 @@ package smi
 
 import "math"
 
+// Common interface to all shapes
+type Shape interface {
+	Area() float64      // Should return the area of a shape
+	Perimeter() float64 // Should return the perimeter of a shape
+}
+
 // A type to hold Rectangle data and methods
 type Rectangle struct {
 	W float64 // Width of Rectangle
@@ -10,12 +16,12 @@ type Rectangle struct {
 }
 
 // Calculate the perimeter of a Rectangle
-func (r *Rectangle) Perimeter() (perimeter float64) {
+func (r Rectangle) Perimeter() (perimeter float64) {
 	return (r.W + r.H) * 2
 }
 
 // Calculate the area of a Rectangle
-func (r *Rectangle) Area() (area float64) {
+func (r Rectangle) Area() (area float64) {
 	return r.W * r.H
 }
 
@@ -25,11 +31,11 @@ type Circle struct {
 }
 
 // Calculate the perimeter of a Rectangle
-func (c *Circle) Perimeter() (perimeter float64) {
+func (c Circle) Perimeter() (perimeter float64) {
 	return 2 * math.Pi * c.R
 }
 
 // Calculate the area of a Rectangle
-func (c *Circle) Area() (area float64) {
+func (c Circle) Area() (area float64) {
 	return math.Pi * math.Pow(c.R, 2)
 }
