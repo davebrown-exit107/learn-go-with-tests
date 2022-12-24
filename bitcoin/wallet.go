@@ -1,7 +1,13 @@
 // Work with bitcoin and wallets
 package bitcoin
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
+
+var ErrNegativeDeposit = errors.New("cannot deposit negative bitcoin")
+var ErrInsufficientFunds = errors.New("cannot withdraw, insufficient funds")
 
 // The currency bitcoin
 type Bitcoin int
@@ -18,7 +24,7 @@ type Wallet struct {
 // Deposit bitcoin in the wallet
 func (w *Wallet) Deposit(amt Bitcoin) error {
 	if amt < Bitcoin(0) {
-		return fmt.Errorf("Cannot deposit negative bitcoin in the amt of %v", amt)
+		return ErrNegativeDeposit
 	}
 	w.balance += amt
 	return nil
@@ -27,7 +33,7 @@ func (w *Wallet) Deposit(amt Bitcoin) error {
 // Withdraw bitcoin fron the wallet
 func (w *Wallet) Withdraw(amt Bitcoin) error {
 	if amt > w.balance {
-		return fmt.Errorf("Wallet overdrawn: Cannot withdraw %v from wallet with %v balance", amt, w.balance)
+		return ErrInsufficientFunds
 	}
 	w.balance -= amt
 	return nil
