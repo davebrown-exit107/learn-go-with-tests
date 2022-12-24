@@ -7,6 +7,13 @@ import (
 )
 
 func TestWallet(t *testing.T) {
+	assertError := func(t testing.TB, err error) {
+		t.Helper()
+		if err == nil {
+			t.Error("wanted error but got nil")
+		}
+	}
+
 	assertBalance := func(t testing.TB, wallet Wallet, want Bitcoin) {
 		t.Helper()
 		got := wallet.Balance()
@@ -31,9 +38,7 @@ func TestWallet(t *testing.T) {
 		err := wallet.Deposit(Bitcoin(-10))
 		// Make sure nothing changed in the wallet
 		assertBalance(t, wallet, wallet.Balance())
-		if err == nil {
-			t.Errorf("No error triggered for negative balance deposit")
-		}
+		assertError(t, err)
 	})
 
 	t.Run("withdraw", func(t *testing.T) {
@@ -51,9 +56,7 @@ func TestWallet(t *testing.T) {
 		err := wallet.Withdraw(Bitcoin(20))
 		// Make sure nothing changed in the wallet
 		assertBalance(t, wallet, wallet.Balance())
-		if err == nil {
-			t.Errorf("No error triggered for overdrawn wallet")
-		}
+		assertError(t, err)
 	})
 
 }
