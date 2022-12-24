@@ -27,8 +27,10 @@ func TestWallet(t *testing.T) {
 	})
 
 	t.Run("deposit negative", func(t *testing.T) {
-		wallet := Wallet{}
+		wallet := Wallet{Bitcoin(10)}
 		err := wallet.Deposit(Bitcoin(-10))
+		// Make sure nothing changed in the wallet
+		assertBalance(t, wallet, wallet.Balance())
 		if err == nil {
 			t.Errorf("No error triggered for negative balance deposit")
 		}
@@ -47,6 +49,8 @@ func TestWallet(t *testing.T) {
 	t.Run("overdraw", func(t *testing.T) {
 		wallet := Wallet{Bitcoin(10)}
 		err := wallet.Withdraw(Bitcoin(20))
+		// Make sure nothing changed in the wallet
+		assertBalance(t, wallet, wallet.Balance())
 		if err == nil {
 			t.Errorf("No error triggered for overdrawn wallet")
 		}
