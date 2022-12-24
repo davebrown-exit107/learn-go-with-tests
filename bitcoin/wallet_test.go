@@ -2,32 +2,56 @@ package bitcoin
 
 import (
 	"fmt"
+	"os"
 	"testing"
 )
 
 func TestWallet(t *testing.T) {
+	assertBalance := func(t testing.TB, wallet Wallet, want Bitcoin) {
+		t.Helper()
+		got := wallet.Balance()
+		if want != got {
+			t.Errorf("got: %v want: %v", got, want)
+		}
+	}
+
 	t.Run("deposit", func(t *testing.T) {
 		wallet := Wallet{}
-		wallet.Deposit(Bitcoin(10))
+		err := wallet.Deposit(Bitcoin(10))
+		if err != nil {
+			t.Errorf("encountered error during deposit")
+		}
 
-		got := wallet.Balance()
 		want := Bitcoin(10)
+		assertBalance(t, wallet, want)
+	})
 
-		if got != want {
-			t.Errorf("got %v want %v", got, want)
+	t.Run("deposit negative", func(t *testing.T) {
+		wallet := Wallet{}
+		err := wallet.Deposit(Bitcoin(-10))
+		if err == nil {
+			t.Errorf("No error triggered for negative balance deposit")
 		}
 	})
+
 	t.Run("withdraw", func(t *testing.T) {
 		wallet := Wallet{Bitcoin(30)}
-		wallet.Withdraw(Bitcoin(10))
+		err := wallet.Withdraw(Bitcoin(10))
+		if err != nil {
+			t.Errorf("encountered error during withdrawl")
+		}
 
-		got := wallet.Balance()
 		want := Bitcoin(20)
-
-		if got != want {
-			t.Errorf("got %v want %v", got, want)
+		assertBalance(t, wallet, want)
+	})
+	t.Run("overdraw", func(t *testing.T) {
+		wallet := Wallet{Bitcoin(10)}
+		err := wallet.Withdraw(Bitcoin(20))
+		if err == nil {
+			t.Errorf("No error triggered for overdrawn wallet")
 		}
 	})
+
 }
 
 // An example of how to deposit and withdraw bitcoin from your wallet
@@ -37,10 +61,18 @@ func ExampleWallet() {
 	wallet := Wallet{Bitcoin(10)}
 
 	// Deposit 25 BTC
-	wallet.Deposit(Bitcoin(25))
+	err := wallet.Deposit(Bitcoin(25))
+	if err != nil {
+		fmt.Println("Error depositing Bitcoin. Exiting")
+		os.Exit(1)
+	}
 
 	// Withdraw 15 BTC
-	wallet.Withdraw(Bitcoin(15))
+	err = wallet.Withdraw(Bitcoin(15))
+	if err != nil {
+		fmt.Println("Error withdrawing Bitcoin. Exiting")
+		os.Exit(1)
+	}
 
 	// Grab the balance and print it
 	balance := wallet.Balance()
@@ -53,7 +85,11 @@ func ExampleWallet_Deposit() {
 	wallet := Wallet{Bitcoin(10)}
 
 	// Deposit 25 BTC
-	wallet.Deposit(Bitcoin(25))
+	err := wallet.Deposit(Bitcoin(25))
+	if err != nil {
+		fmt.Println("Error depositing Bitcoin. Exiting")
+		os.Exit(1)
+	}
 
 	// Grab the balance and print it
 	balance := wallet.Balance()
@@ -66,7 +102,11 @@ func ExampleWallet_Withdraw() {
 	wallet := Wallet{Bitcoin(25)}
 
 	// Withdraw 10 BTC
-	wallet.Withdraw(Bitcoin(10))
+	err := wallet.Withdraw(Bitcoin(10))
+	if err != nil {
+		fmt.Println("Error withdrawing Bitcoin. Exiting")
+		os.Exit(1)
+	}
 
 	// Grab the balance and print it
 	balance := wallet.Balance()
