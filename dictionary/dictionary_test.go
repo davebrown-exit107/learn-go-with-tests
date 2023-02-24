@@ -9,7 +9,7 @@ func TestSearch(t *testing.T) {
 		got, err := dictionary.Search("test")
 		want := "this is just a test"
 
-		assertNoError(t, err)
+		assertError(t, err, nil)
 		assertStrings(t, got, want)
 	})
 
@@ -24,21 +24,19 @@ func TestSearch(t *testing.T) {
 
 func TestAdd(t *testing.T) {
 	dictionary := Dictionary{}
-	dictionary.Add("test", "this is just a test")
 
-	want := "this is just a test"
-	got, err := dictionary.Search("test")
-	assertNoError(t, err)
-	assertStrings(t, got, want)
+	t.Run("new word", func(t *testing.T) {
+		dictionary.Add("test", "this is just a test")
+
+		want := "this is just a test"
+		got, err := dictionary.Search("test")
+
+		assertError(t, err, nil)
+		assertStrings(t, got, want)
+	})
+
 }
 
-func assertNoError(t testing.TB, got error) {
-	t.Helper()
-
-	if got != nil {
-		t.Errorf("wanted no error, got %q", got)
-	}
-}
 func assertError(t testing.TB, got, want error) {
 	t.Helper()
 
