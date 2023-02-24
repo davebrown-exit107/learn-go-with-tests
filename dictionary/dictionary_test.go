@@ -27,8 +27,20 @@ func TestAdd(t *testing.T) {
 		definition := "this is just a test"
 
 		dictionary := Dictionary{}
-		dictionary.Add(word, definition)
+		err := dictionary.Add(word, definition)
 
+		assertError(t, err, nil)
+		assertDefinition(t, dictionary, word, definition)
+	})
+
+	t.Run("dupe word", func(t *testing.T) {
+		word := "test"
+		definition := "this is just a test"
+
+		dictionary := Dictionary{word: definition}
+		err := dictionary.Add(word, "new test")
+
+		assertError(t, err, ErrWordExists)
 		assertDefinition(t, dictionary, word, definition)
 	})
 
