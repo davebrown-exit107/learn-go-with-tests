@@ -1,8 +1,9 @@
 package dictionary
 
 const (
-	ErrNotFound   = DictionaryErr("could not find the word you were looking for")
-	ErrWordExists = DictionaryErr("the word is already defined in the dictionary")
+	ErrNotFound         = DictionaryErr("could not find the word you were looking for")
+	ErrWordExists       = DictionaryErr("the word is already defined in the dictionary")
+	ErrWordDoesNotExist = DictionaryErr("cannot update definition because the word cannot be found")
 )
 
 type DictionaryErr string
@@ -44,7 +45,7 @@ func (d Dictionary) Update(word, definition string) error {
 
 	switch err {
 	case ErrNotFound:
-		return err
+		return ErrWordDoesNotExist
 	case nil:
 		d[word] = definition
 	default:
