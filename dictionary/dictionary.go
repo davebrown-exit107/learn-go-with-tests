@@ -3,6 +3,7 @@ package dictionary
 import "errors"
 
 var ErrNotFound = errors.New("could not find the word you were looking for")
+var ErrWordExists = errors.New("the word is already defined in the dictionary")
 
 type Dictionary map[string]string
 
@@ -17,6 +18,12 @@ func (d Dictionary) Search(word string) (string, error) {
 }
 
 func (d Dictionary) Add(word, definition string) error {
-	d[word] = definition
-	return nil
+	_, present := d[word]
+	if present {
+		return ErrWordExists
+	} else {
+		d[word] = definition
+		return nil
+	}
+
 }
