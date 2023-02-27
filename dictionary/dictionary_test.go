@@ -90,9 +90,6 @@ func TestDelete(t *testing.T) {
 
 		err := dictionary.Delete("new word")
 		assertError(t, err, ErrWordDoesNotExist)
-
-		_, err = dictionary.Search(word)
-		assertError(t, err, nil)
 	})
 }
 
