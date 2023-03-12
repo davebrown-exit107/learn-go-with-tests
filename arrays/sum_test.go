@@ -1,15 +1,17 @@
-package arrays
+package arrays_test
 
 import (
 	"fmt"
 	"reflect"
 	"testing"
+
+	"github.com/davebrown-exit107/learn-go-with-tests/arrays"
 )
 
 func TestSum(t *testing.T) {
 	numbers := []int{1, 2, 3, 4, 5}
 
-	got := Sum(numbers)
+	got := arrays.Sum(numbers)
 	want := 15
 
 	if got != want {
@@ -26,21 +28,21 @@ func TestSumAll(t *testing.T) {
 	}
 
 	t.Run("two full arrays", func(t *testing.T) {
-		got := SumAll([]int{1, 2}, []int{0, 9})
+		got := arrays.SumAll([]int{1, 2}, []int{0, 9})
 		want := []int{3, 9}
 
 		checkArraySums(t, got, want)
 	})
 
 	t.Run("one full array and one empty array", func(t *testing.T) {
-		got := SumAll([]int{}, []int{0, 9})
+		got := arrays.SumAll([]int{}, []int{0, 9})
 		want := []int{0, 9}
 
 		checkArraySums(t, got, want)
 	})
 
 	t.Run("two empty arrays", func(t *testing.T) {
-		got := SumAll([]int{}, []int{})
+		got := arrays.SumAll([]int{}, []int{})
 		want := []int{0, 0}
 
 		checkArraySums(t, got, want)
@@ -56,21 +58,21 @@ func TestSumAllTails(t *testing.T) {
 	}
 
 	t.Run("two full arrays", func(t *testing.T) {
-		got := SumAllTails([]int{1, 2}, []int{0, 9})
+		got := arrays.SumAllTails([]int{1, 2}, []int{0, 9})
 		want := []int{2, 9}
 
 		checkArraySums(t, got, want)
 	})
 
 	t.Run("one full array and one empty array", func(t *testing.T) {
-		got := SumAllTails([]int{}, []int{0, 9})
+		got := arrays.SumAllTails([]int{}, []int{0, 9})
 		want := []int{0, 9}
 
 		checkArraySums(t, got, want)
 	})
 
 	t.Run("two empty arrays", func(t *testing.T) {
-		got := SumAllTails([]int{}, []int{})
+		got := arrays.SumAllTails([]int{}, []int{})
 		want := []int{0, 0}
 
 		checkArraySums(t, got, want)
@@ -81,7 +83,7 @@ func ExampleSum() {
 	// Sum the contents of an array of integers
 	numbers := []int{1, 2, 3, 4, 5}
 
-	sum := Sum(numbers)
+	sum := arrays.Sum(numbers)
 	fmt.Println(sum)
 	// Output: 15
 }
@@ -91,7 +93,7 @@ func ExampleSumAll() {
 	numbers1 := []int{1, 2}
 	numbers2 := []int{0, 9}
 
-	sum := SumAll(numbers1, numbers2)
+	sum := arrays.SumAll(numbers1, numbers2)
 	fmt.Println(sum)
 	// Output: [3 9]
 }
@@ -101,7 +103,7 @@ func ExampleSumAllTails() {
 	numbers1 := []int{1, 2}
 	numbers2 := []int{0, 9}
 
-	sum := SumAllTails(numbers1, numbers2)
+	sum := arrays.SumAllTails(numbers1, numbers2)
 	fmt.Println(sum)
 	// Output: [2 9]
 }
