@@ -39,6 +39,15 @@ func (w *Wallet) Withdraw(amt Bitcoin) error {
 	return nil
 }
 
+// Set the balance of the bitcoin in the wallet
+// This is required because `balance` is unexported
+func (w *Wallet) SetBalance(amt Bitcoin) (balance Bitcoin) {
+	if amt >= Bitcoin(0) {
+		w.balance = amt
+	}
+	return w.balance
+}
+
 // Return the balance of the bitcoin in the wallet
 func (w *Wallet) Balance() (balance Bitcoin) {
 	return w.balance
