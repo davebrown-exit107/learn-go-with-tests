@@ -1,4 +1,4 @@
-package dictionary
+package dict
 
 const (
 	ErrNotFound         = DictionaryErr("could not find the word you were looking for")
