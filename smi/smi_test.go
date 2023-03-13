@@ -1,25 +1,27 @@
-package smi
+package smi_test
 
 import (
 	"fmt"
 	"testing"
+
+	"github.com/davebrown-exit107/learn-go-with-tests/smi"
 )
 
 func TestArea(t *testing.T) {
 	tests := map[string]struct {
-		shape Shape
+		shape smi.Shape
 		want  float64
 	}{
 		"rectangle": {
-			shape: Rectangle{10, 10},
+			shape: smi.Rectangle{10, 10},
 			want:  100.0,
 		},
 		"circle": {
-			shape: Circle{5},
+			shape: smi.Circle{5},
 			want:  78.53981633974483,
 		},
 		"triangle": {
-			shape: Triangle{
+			shape: smi.Triangle{
 				B: 1,
 				H: 4},
 			want: 2,
@@ -39,20 +41,20 @@ func TestArea(t *testing.T) {
 
 func TestPerimeter(t *testing.T) {
 	tests := map[string]struct {
-		shape Shape
+		shape smi.Shape
 		want  float64
 	}{
 		"rectangle": {
-			shape: Rectangle{10, 10},
+			shape: smi.Rectangle{10, 10},
 			want:  40.0,
 		},
 		"circle": {
-			shape: Circle{5},
+			shape: smi.Circle{5},
 			want:  31.41592653589793,
 		},
 		/* This hasn't been implemented yet so I'm leaving the test commented out
 		"triangle": {
-			shape: Triangle{
+			shape: smi.Triangle{
 				B: 1,
 				H: 4},
 			want:  31.41592653589793,
@@ -72,28 +74,28 @@ func TestPerimeter(t *testing.T) {
 }
 
 func ExampleRectangle_Perimeter() {
-	testRectangle := Rectangle{W: 10, H: 10}
+	testRectangle := smi.Rectangle{W: 10, H: 10}
 	perimeter := testRectangle.Perimeter()
 	fmt.Println(perimeter)
 	// Output: 40
 }
 
 func ExampleRectangle_Area() {
-	testRectangle := Rectangle{W: 10, H: 10}
+	testRectangle := smi.Rectangle{W: 10, H: 10}
 	area := testRectangle.Area()
 	fmt.Println(area)
 	// Output: 100
 }
 
 func ExampleCircle_Perimeter() {
-	circle := Circle{R: 5}
+	circle := smi.Circle{R: 5}
 	perimeter := circle.Perimeter()
 	fmt.Println(perimeter)
 	// Output: 31.41592653589793
 }
 
 func ExampleCircle_Area() {
-	circle := Circle{R: 5}
+	circle := smi.Circle{R: 5}
 	area := circle.Area()
 	fmt.Println(area)
 	// Output: 78.53981633974483
