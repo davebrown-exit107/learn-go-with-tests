@@ -15,8 +15,15 @@ func TestHello(t *testing.T) {
 	})
 
 	t.Run("say hello with a name", func(t *testing.T) {
-		got := hello.Hello("world", hello.EN)
-		want := "hello, world"
+		got := hello.Hello("whole world", hello.EN)
+		want := "hello, whole world"
+
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("use a string instead of the included constants", func(t *testing.T) {
+		got := hello.Hello("world", "spanish")
+		want := "hola, world"
 
 		assertCorrectMessage(t, got, want)
 	})
