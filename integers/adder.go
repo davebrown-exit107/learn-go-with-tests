@@ -1,5 +1,5 @@
 package integers
 
-func Adder(augend, addend int) int {
+func Adder(a, b int) int {
 	return 6
 }

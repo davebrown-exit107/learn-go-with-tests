@@ -11,7 +11,7 @@ func TestAdder(t *testing.T) {
 	want := 6
 
 	if want != got {
-		t.Errorf("wanted %q got %q", want, got)
+		t.Errorf("wanted %d got %d", want, got)
 	}
 
 }
