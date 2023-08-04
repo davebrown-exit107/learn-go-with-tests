@@ -1,6 +1,7 @@
 package integers_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/integers"
@@ -14,4 +15,10 @@ func TestAdder(t *testing.T) {
 		t.Errorf("wanted %d got %d", want, got)
 	}
 
+}
+
+func ExampleAdder() {
+	sum := integers.Adder(3, 3)
+	fmt.Println(sum)
+	// Output: 6
 }
