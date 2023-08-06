@@ -32,7 +32,7 @@ func TestSum(t *testing.T) {
 func BenchmarkSum(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		numbers := []int{1, 2, 3, 4, 5}
-		arrays.Sum(numbers)
+		_, _ = arrays.Sum(numbers)
 	}
 }
 
@@ -44,6 +44,31 @@ func ExampleSum() {
 	}
 	fmt.Println(sum)
 	// Output: 45
+}
+
+func TestSumAll(t *testing.T) {
+	t.Run("sum the contents of two arrays", func(t *testing.T) {
+		arrOne := []int{5, 6, 7, 8}
+		arrTwo := []int{7, 6, 5, 4}
+
+		err, got := arrays.SumAll(arrOne, arrTwo)
+		want := []int{26, 22}
+
+		assertNoError(t, err)
+		assertArraysEqual(t, got, want)
+	})
+}
+
+func assertArraysEqual(t *testing.T, got, want []int) {
+	t.Helper()
+	if len(got) != len(want) {
+		t.Errorf("arrays not of equal length")
+	}
+	for i := 0; i < len(got); i++ {
+		if got[i] != want[i] {
+			t.Errorf("wanted %q, got %q", want[i], got[i])
+		}
+	}
 }
 
 func assertEqual(t *testing.T, got, want int) {

@@ -19,3 +19,8 @@ func Sum(arr []int) (error, int) {
 	}
 	return nil, sum
 }
+
+// SumAll returns an []int array of sums, one entry for each array passed in
+func SumAll(arr ...[]int) (error, []int) {
+	return nil, []int{45, 42}
+}
