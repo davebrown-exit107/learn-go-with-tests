@@ -1,8 +1,10 @@
 package iteration
 
-import "fmt"
-
 // Repeat a given character five times
 func Repeat(char string) string {
-	return fmt.Sprintf("%s%s%s%s%s", char, char, char, char, char)
+	var repeated string
+	for i := 0; i < 5; i++ {
+		repeated = repeated + char
+	}
+	return repeated
 }
