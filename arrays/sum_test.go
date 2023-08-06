@@ -22,7 +22,7 @@ func TestSum(t *testing.T) {
 		numbers := []int{}
 
 		err, _ := arrays.Sum(numbers)
-		wantErr := arrays.ArrTooShort
+		wantErr := arrays.ErrArrTooShort
 
 		assertError(t, err, wantErr)
 	})
