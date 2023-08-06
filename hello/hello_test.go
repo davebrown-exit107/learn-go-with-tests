@@ -1,6 +1,7 @@
 package hello_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/hello"
@@ -48,4 +49,10 @@ func assertCorrectMessage(t testing.TB, got, want string) {
 	if got != want {
 		t.Errorf("wanted %q got %q", want, got)
 	}
+}
+
+func ExampleHello() {
+	msg := hello.Hello("World", hello.EN)
+	fmt.Println(msg)
+	// Output: hello, World
 }

@@ -11,6 +11,7 @@ const (
 	frenchHelloPrefix  = "bonjour, "
 )
 
+// Takes a name and language and returns the equivalent "hello, name" in that language
 func Hello(name, language string) string {
 	var helloPrefix string
 
