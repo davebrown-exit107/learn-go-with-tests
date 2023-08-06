@@ -1,6 +1,8 @@
 package arrays
 
-import "errors"
+import (
+	"errors"
+)
 
 // Standard Errors
 var (
@@ -22,5 +24,13 @@ func Sum(arr []int) (error, int) {
 
 // SumAll returns an []int array of sums, one entry for each array passed in
 func SumAll(arr ...[]int) (error, []int) {
-	return nil, []int{45, 42}
+	sums := make([]int, len(arr))
+	for i, v := range arr {
+		err, curSum := Sum(v)
+		if err != nil {
+			return err, []int{}
+		}
+		sums[i] = curSum
+	}
+	return nil, sums
 }
