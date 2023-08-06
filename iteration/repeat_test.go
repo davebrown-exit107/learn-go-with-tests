@@ -15,6 +15,11 @@ func TestRepeat(t *testing.T) {
 		assertNoError(t, err)
 		assertEqual(t, got, want)
 	})
+	t.Run("numRepeat is zero", func(t *testing.T) {
+		err, got := iteration.Repeat("b", 0)
+		assertError(t, err)
+		assertEqual(t, got, "")
+	})
 	t.Run("numRepeat less than zero", func(t *testing.T) {
 		err, got := iteration.Repeat("b", -5)
 		assertError(t, err)
