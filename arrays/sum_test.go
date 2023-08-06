@@ -1,6 +1,7 @@
 package arrays_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/arrays"
@@ -26,6 +27,23 @@ func TestSum(t *testing.T) {
 		assertError(t, err, wantErr)
 	})
 
+}
+
+func BenchmarkSum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		numbers := []int{1, 2, 3, 4, 5}
+		arrays.Sum(numbers)
+	}
+}
+
+func ExampleSum() {
+	numbers := []int{5, 6, 7, 8, 9, 10}
+	err, sum := arrays.Sum(numbers)
+	if err != nil {
+		// Error encountered
+	}
+	fmt.Println(sum)
+	// Output: 45
 }
 
 func assertEqual(t *testing.T, got, want int) {
