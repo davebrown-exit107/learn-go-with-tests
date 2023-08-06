@@ -17,6 +17,12 @@ func TestAdder(t *testing.T) {
 
 }
 
+func BenchmarkAdder(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		integers.Adder(1, 3)
+	}
+}
+
 func ExampleAdder() {
 	sum := integers.Adder(3, 3)
 	fmt.Println(sum)

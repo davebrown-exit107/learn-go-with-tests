@@ -51,6 +51,12 @@ func assertCorrectMessage(t testing.TB, got, want string) {
 	}
 }
 
+func BenchmarkHello(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		hello.Hello("world", hello.EN)
+	}
+}
+
 func ExampleHello() {
 	msg := hello.Hello("World", hello.EN)
 	fmt.Println(msg)
