@@ -76,7 +76,7 @@ func assertArraysEqual(t *testing.T, got, want []int) {
 	}
 
 	if !cmp.Equal(got, want) {
-		t.Errorf("wanted %q, got %q", want, got)
+		t.Errorf("wanted %v, got %v", want, got)
 	}
 }
 
