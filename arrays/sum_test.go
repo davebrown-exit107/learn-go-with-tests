@@ -57,6 +57,15 @@ func TestSumAll(t *testing.T) {
 		assertNoError(t, err)
 		assertArraysEqual(t, got, want)
 	})
+	t.Run("ensure errors are returned correctly", func(t *testing.T) {
+		arrOne := []int{}
+		arrTwo := []int{5, 6, 7, 8}
+
+		err, _ := arrays.SumAll(arrOne, arrTwo)
+		wantErr := arrays.ErrArrTooShort
+
+		assertError(t, err, wantErr)
+	})
 }
 
 func assertArraysEqual(t *testing.T, got, want []int) {
