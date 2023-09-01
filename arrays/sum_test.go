@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/arrays"
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestSum(t *testing.T) {
@@ -73,10 +74,9 @@ func assertArraysEqual(t *testing.T, got, want []int) {
 	if len(got) != len(want) {
 		t.Errorf("arrays not of equal length")
 	}
-	for i := 0; i < len(got); i++ {
-		if got[i] != want[i] {
-			t.Errorf("wanted %q, got %q", want[i], got[i])
-		}
+
+	if !cmp.Equal(got, want) {
+		t.Errorf("wanted %q, got %q", want, got)
 	}
 }
 
