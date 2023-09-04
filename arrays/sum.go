@@ -18,3 +18,12 @@ func SumAll(arr ...[]int) []int {
 	}
 	return sums
 }
+
+// SumAllTails returns an []int array of sums of tails, one entry for each array passed in
+func SumAllTails(arr ...[]int) []int {
+	var sums = []int{}
+	for _, v := range arr {
+		sums = append(sums, Sum(v[1:]))
+	}
+	return sums
+}

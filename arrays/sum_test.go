@@ -56,6 +56,18 @@ func TestSumAll(t *testing.T) {
 	})
 }
 
+func TestSumAllTails(t *testing.T) {
+	t.Run("sum the tails of two arrays", func(t *testing.T) {
+		arrOne := []int{5, 6, 7, 8}
+		arrTwo := []int{10, 5, 3, 8}
+
+		got := arrays.SumAllTails(arrOne, arrTwo)
+		want := []int{21, 16}
+
+		assertArraysEqual(t, got, want)
+	})
+}
+
 func assertArraysEqual(t *testing.T, got, want []int) {
 	t.Helper()
 
