@@ -12,10 +12,9 @@ func Sum(arr []int) int {
 
 // SumAll returns an []int array of sums, one entry for each array passed in
 func SumAll(arr ...[]int) []int {
-	sums := make([]int, len(arr))
-	for i, v := range arr {
-		curSum := Sum(v)
-		sums[i] = curSum
+	var sums = []int{}
+	for _, v := range arr {
+		sums = append(sums, Sum(v))
 	}
 	return sums
 }
