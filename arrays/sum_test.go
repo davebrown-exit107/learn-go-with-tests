@@ -66,6 +66,16 @@ func TestSumAllTails(t *testing.T) {
 
 		assertArraysEqual(t, got, want)
 	})
+
+	t.Run("safely sum empty arrays", func(t *testing.T) {
+		arrOne := []int{5, 6, 7, 8}
+		arrTwo := []int{}
+
+		got := arrays.SumAllTails(arrOne, arrTwo)
+		want := []int{21, 0}
+
+		assertArraysEqual(t, got, want)
+	})
 }
 
 func assertArraysEqual(t *testing.T, got, want []int) {

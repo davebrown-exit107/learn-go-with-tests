@@ -23,7 +23,11 @@ func SumAll(arr ...[]int) []int {
 func SumAllTails(arr ...[]int) []int {
 	var sums = []int{}
 	for _, v := range arr {
-		sums = append(sums, Sum(v[1:]))
+		if len(v) == 0 {
+			sums = append(sums, 0)
+		} else {
+			sums = append(sums, Sum(v[1:]))
+		}
 	}
 	return sums
 }
