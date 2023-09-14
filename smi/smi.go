@@ -2,6 +2,11 @@ package smi
 
 import "math"
 
+// Shape is an interface to encompass shape types
+type Shape interface {
+	Area() float64
+}
+
 // Rectangle represents a rectangle for calucations of area and perimeter
 type Rectangle struct {
 	Length float64
