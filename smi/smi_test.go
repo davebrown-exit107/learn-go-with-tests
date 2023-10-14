@@ -7,17 +7,25 @@ import (
 )
 
 func TestPerimeter(t *testing.T) {
-	t.Run("rectangle", func(t *testing.T) {
-		rect := smi.Rectangle{10, 10}
-		got := rect.Perimeter()
-		want := 40.0
+	perimeterTests := []struct {
+		name     string
+		rectange smi.Rectangle
+		want     float64
+	}{
+		{"square", smi.Rectangle{12, 12}, 48.0},
+		{"rectange", smi.Rectangle{12, 6}, 36.0},
+	}
 
-		if got != want {
-			t.Errorf("got %.2f wanted %.2f", got, want)
-		}
-	})
+	for _, tt := range perimeterTests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.rectange.Perimeter()
+			if got != tt.want {
+				t.Errorf("got %.2f wanted %.2f", got, tt.want)
+			}
+
+		})
+	}
 }
-
 func TestArea(t *testing.T) {
 	areaTests := []struct {
 		name  string
@@ -30,9 +38,11 @@ func TestArea(t *testing.T) {
 	}
 
 	for _, tt := range areaTests {
-		got := tt.shape.Area()
-		if got != tt.want {
-			t.Errorf("got %.2f wanted %.2f", got, tt.want)
-		}
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Area()
+			if got != tt.want {
+				t.Errorf("got %.2f wanted %.2f", got, tt.want)
+			}
+		})
 	}
 }
