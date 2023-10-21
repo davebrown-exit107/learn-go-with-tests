@@ -1,6 +1,7 @@
 package bitcoin_test
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/bitcoin"
@@ -36,5 +37,15 @@ func TestWallet(t *testing.T) {
 		want := bitcoin.Bitcoin(10)
 
 		assertBalance(t, wallet, want)
+	})
+	t.Run("stringer", func(t *testing.T) {
+		wallet := bitcoin.Wallet{}
+		wallet.Deposit(20)
+
+		got := fmt.Sprintf("%s", wallet.Balance())
+		want := "20 BTC"
+		if got != want {
+			t.Errorf("got %q want %q", got, want)
+		}
 	})
 }
