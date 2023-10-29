@@ -12,8 +12,13 @@ func TestSearch(t *testing.T) {
 	got := dictionary.Search(testDictionary, "test")
 	want := "this is just a test"
 
+	assertStringsEqual(t, got, want)
+
+}
+
+func assertStringsEqual(t testing.TB, got, want string) {
+	t.Helper()
 	if got != want {
 		t.Errorf("wanted %q got %q", want, got)
 	}
-
 }
