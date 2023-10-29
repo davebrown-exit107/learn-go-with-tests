@@ -3,8 +3,9 @@ package dictionary
 type errorConst string
 
 const (
-	ErrWordMissing errorConst = "word not found"
-	ErrWordExists  errorConst = "word already exists"
+	ErrWordMissing      errorConst = "word not found"
+	ErrWordDoesNotExist errorConst = "could not update, word not found"
+	ErrWordExists       errorConst = "word already exists"
 )
 
 func (c errorConst) Error() string {
@@ -36,6 +37,6 @@ func (d Dictionary) Update(word, definition string) error {
 		d[word] = definition
 		return nil
 	} else {
-		return ErrWordMissing
+		return ErrWordDoesNotExist
 	}
 }

@@ -20,7 +20,7 @@ func TestUpdate(t *testing.T) {
 		testDictionary := dictionary.Dictionary{}
 
 		got := testDictionary.Update("another", "a new definition")
-		want := dictionary.ErrWordMissing
+		want := dictionary.ErrWordDoesNotExist
 
 		assertError(t, want, got)
 	})
@@ -72,7 +72,7 @@ func TestSearch(t *testing.T) {
 func assertError(t testing.TB, got, want error) {
 	t.Helper()
 	if got != want {
-		t.Errorf("wanted %v got %v", want, got)
+		t.Errorf("wanted %q got %q", want, got)
 	}
 }
 
