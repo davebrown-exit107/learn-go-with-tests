@@ -31,8 +31,11 @@ func (d Dictionary) Add(word, definition string) error {
 	}
 }
 
-func (d Dictionary) Update(word, definition string) {
+func (d Dictionary) Update(word, definition string) error {
 	if _, ok := d[word]; ok {
 		d[word] = definition
+		return nil
+	} else {
+		return ErrWordMissing
 	}
 }

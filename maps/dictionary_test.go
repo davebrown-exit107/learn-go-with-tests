@@ -11,10 +11,18 @@ func TestUpdate(t *testing.T) {
 		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
 
 		want := "a new definition"
-		testDictionary.Update("test", want)
+		_ = testDictionary.Update("test", want)
 
 		got, _ := testDictionary.Search("test")
 		assertStringsEqual(t, want, got)
+	})
+	t.Run("update missing word in dictionary", func(t *testing.T) {
+		testDictionary := dictionary.Dictionary{}
+
+		got := testDictionary.Update("another", "a new definition")
+		want := dictionary.ErrWordMissing
+
+		assertError(t, want, got)
 	})
 }
 func TestAdd(t *testing.T) {
