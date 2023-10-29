@@ -6,6 +6,16 @@ import (
 	dictionary "github.com/davebrown-exit107/learn-go-with-tests/maps"
 )
 
+func TestDelete(t *testing.T) {
+	t.Run("delete word in dictionary", func(t *testing.T) {
+		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
+		testDictionary.Delete("test")
+
+		_, got := testDictionary.Search("test")
+		want := dictionary.ErrWordMissing
+		assertError(t, got, want)
+	})
+}
 func TestUpdate(t *testing.T) {
 	t.Run("update word in dictionary", func(t *testing.T) {
 		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
