@@ -7,13 +7,34 @@ import (
 )
 
 func TestSearch(t *testing.T) {
-	testDictionary := dictionary.Dictionary{"test": "this is just a test"}
+	t.Run("search for word not in dictionary", func(t *testing.T) {
 
-	got := testDictionary.Search("test")
-	want := "this is just a test"
+		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
 
-	assertStringsEqual(t, got, want)
+		_, err := testDictionary.Search("unknown")
+		want := dictionary.ErrWordMissing
 
+		assertError(t, err, want)
+
+	})
+
+	t.Run("search for word in dictionary", func(t *testing.T) {
+
+		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
+
+		got, _ := testDictionary.Search("test")
+		want := "this is just a test"
+
+		assertStringsEqual(t, got, want)
+
+	})
+}
+
+func assertError(t testing.TB, got, want error) {
+	t.Helper()
+	if got != want {
+		t.Errorf("wanted %v got %v", want, got)
+	}
 }
 
 func assertStringsEqual(t testing.TB, got, want string) {
