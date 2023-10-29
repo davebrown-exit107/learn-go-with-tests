@@ -7,7 +7,7 @@ import (
 )
 
 func TestSearch(t *testing.T) {
-	testDictionary := map[string]string{"test": "this is just a test"}
+	testDictionary := dictionary.Dictionary{"test": "this is just a test"}
 
 	got := dictionary.Search(testDictionary, "test")
 	want := "this is just a test"
