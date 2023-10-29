@@ -11,11 +11,18 @@ func TestAdd(t *testing.T) {
 		testDictionary := dictionary.Dictionary{}
 
 		want := "a new word"
-		testDictionary.Add("new", want)
+		_ = testDictionary.Add("new", want)
 
 		got, _ := testDictionary.Search("new")
 		assertStringsEqual(t, got, want)
 	})
+	t.Run("add same word twice", func(t *testing.T) {
+		testDictionary := dictionary.Dictionary{"new": "a new word"}
+		got := testDictionary.Add("new", "a new word")
+		want := dictionary.ErrWordExists
+		assertError(t, got, want)
+	})
+
 }
 
 func TestSearch(t *testing.T) {
