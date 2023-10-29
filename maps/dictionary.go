@@ -20,3 +20,7 @@ func (d Dictionary) Search(word string) (string, error) {
 		return "", ErrWordMissing
 	}
 }
+
+func (d Dictionary) Add(word, definition string) {
+	d[word] = definition
+}

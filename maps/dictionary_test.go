@@ -6,7 +6,20 @@ import (
 	dictionary "github.com/davebrown-exit107/learn-go-with-tests/maps"
 )
 
+func TestAdd(t *testing.T) {
+	t.Run("add word to dictionary", func(t *testing.T) {
+		testDictionary := dictionary.Dictionary{}
+
+		want := "a new word"
+		testDictionary.Add("new", want)
+
+		got, _ := testDictionary.Search("new")
+		assertStringsEqual(t, got, want)
+	})
+}
+
 func TestSearch(t *testing.T) {
+
 	t.Run("search for word not in dictionary", func(t *testing.T) {
 
 		testDictionary := dictionary.Dictionary{"test": "this is just a test"}
