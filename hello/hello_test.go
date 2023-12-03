@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	hello "github.com/davebrown-exit107/learn-go-with-tests/ch01"
+	"github.com/davebrown-exit107/learn-go-with-tests/hello"
 )
 
 func TestHello(t *testing.T) {

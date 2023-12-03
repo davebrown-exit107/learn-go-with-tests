@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	iteration "github.com/davebrown-exit107/learn-go-with-tests/ch03"
+	"github.com/davebrown-exit107/learn-go-with-tests/iteration"
 )
 
 func TestRepeat(t *testing.T) {

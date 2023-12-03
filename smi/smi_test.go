@@ -3,7 +3,7 @@ package smi_test
 import (
 	"testing"
 
-	smi "github.com/davebrown-exit107/learn-go-with-tests/ch05"
+	"github.com/davebrown-exit107/learn-go-with-tests/smi"
 )
 
 func TestPerimeter(t *testing.T) {
