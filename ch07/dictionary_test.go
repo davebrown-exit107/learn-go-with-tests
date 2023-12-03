@@ -3,7 +3,7 @@ package dictionary_test
 import (
 	"testing"
 
-	dictionary "github.com/davebrown-exit107/learn-go-with-tests/maps"
+	dictionary "github.com/davebrown-exit107/learn-go-with-tests/ch07"
 )
 
 func TestDelete(t *testing.T) {

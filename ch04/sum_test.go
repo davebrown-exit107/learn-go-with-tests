@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/davebrown-exit107/learn-go-with-tests/arrays"
+	arrays "github.com/davebrown-exit107/learn-go-with-tests/ch04"
 	"github.com/google/go-cmp/cmp"
 )
 

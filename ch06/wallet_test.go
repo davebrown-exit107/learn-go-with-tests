@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/davebrown-exit107/learn-go-with-tests/bitcoin"
+	bitcoin "github.com/davebrown-exit107/learn-go-with-tests/ch06"
 )
 
 func TestWallet(t *testing.T) {

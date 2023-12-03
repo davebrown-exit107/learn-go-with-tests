@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/davebrown-exit107/learn-go-with-tests/integers"
+	integers "github.com/davebrown-exit107/learn-go-with-tests/ch02"
 )
 
 func TestAdder(t *testing.T) {
