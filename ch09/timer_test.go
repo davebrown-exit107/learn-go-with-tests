@@ -13,9 +13,9 @@ func TestCountdown(t *testing.T) {
 		timer.Countdown(buffer)
 		got := buffer.String()
 		want := `3
-		2
-		1
-		Go!`
+2
+1
+Go!`
 
 		assertEqual(t, got, want)
 	})
