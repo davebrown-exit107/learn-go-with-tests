@@ -1,4 +1,4 @@
-package di_test
+package main_test
 
 import (
 	"bytes"
