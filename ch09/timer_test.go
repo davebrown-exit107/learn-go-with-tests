@@ -12,10 +12,7 @@ func TestCountdown(t *testing.T) {
 		buffer := &bytes.Buffer{}
 		timer.Countdown(buffer)
 		got := buffer.String()
-		want := `3
-2
-1
-Go!`
+		want := "3\n2\n1\nGo!"
 
 		assertEqual(t, got, want)
 	})
