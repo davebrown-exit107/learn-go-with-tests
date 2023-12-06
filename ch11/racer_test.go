@@ -26,14 +26,14 @@ func TestRacer(t *testing.T) {
 		assertEqualStr(t, got, want)
 	})
 
-	t.Run("timeout after 10 seconds", func(t *testing.T) {
-		timeoutServer := buildDelayedHttpServer(11 * time.Second)
+	t.Run("confirm timeout works", func(t *testing.T) {
+		timeoutServer := buildDelayedHttpServer(20 * time.Millisecond)
 
 		defer timeoutServer.Close()
 
 		timeoutUrl := timeoutServer.URL
 
-		_, err := racer.Racer(timeoutUrl, timeoutUrl)
+		_, err := racer.ConfigurableRacer(timeoutUrl, timeoutUrl, 10*time.Millisecond)
 
 		assertError(t, err, racer.ErrTimeOut)
 
