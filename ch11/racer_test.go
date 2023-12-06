@@ -21,9 +21,21 @@ func TestRacer(t *testing.T) {
 		fastUrl := fastServer.URL
 
 		want := fastUrl
-		got := racer.Racer(slowUrl, fastUrl)
+		got, _ := racer.Racer(slowUrl, fastUrl)
 
 		assertEqualStr(t, got, want)
+	})
+
+	t.Run("timeout after 10 seconds", func(t *testing.T) {
+		timeoutServer := buildDelayedHttpServer(11 * time.Second)
+
+		defer timeoutServer.Close()
+
+		timeoutUrl := timeoutServer.URL
+
+		_, err := racer.Racer(timeoutUrl, timeoutUrl)
+
+		assertError(t, err, racer.ErrTimeOut)
 
 	})
 
@@ -35,6 +47,14 @@ func buildDelayedHttpServer(delay time.Duration) *httptest.Server {
 		w.WriteHeader(http.StatusOK)
 	}))
 }
+
+func assertError(t *testing.T, got, want error) {
+	t.Helper()
+	if got != want {
+		t.Errorf("got %v want %v", got, want)
+	}
+}
+
 func assertEqualStr(t *testing.T, got, want string) {
 	t.Helper()
 	if got != want {
