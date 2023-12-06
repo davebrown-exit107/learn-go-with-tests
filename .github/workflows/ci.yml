@@ -5,6 +5,7 @@ name: ci
 
 permissions:
   statuses: write
+  checks: write
   
 on:
   push:
