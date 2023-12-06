@@ -27,7 +27,8 @@ func ConfigurableRacer(urlA, urlB string, timeout time.Duration) (winner string,
 func ping(url string) chan struct{} {
 	ch := make(chan struct{})
 	go func() {
-		http.Get(url)
+		// We don't care about the return values, just who gets there first
+		_, _ = http.Get(url)
 		close(ch)
 	}()
 	return ch
