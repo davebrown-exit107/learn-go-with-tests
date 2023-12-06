@@ -1,15 +1,21 @@
 package racer
 
 import (
+	"errors"
 	"net/http"
+	"time"
 )
 
-func Racer(urlA, urlB string) (winner string) {
+var ErrTimeOut = errors.New("both urls timed out")
+
+func Racer(urlA, urlB string) (winner string, err error) {
 	select {
 	case <-ping(urlA):
-		return urlA
+		return urlA, nil
 	case <-ping(urlB):
-		return urlB
+		return urlB, nil
+	case <-time.After(10 * time.Second):
+		return "", ErrTimeOut
 	}
 }
 
