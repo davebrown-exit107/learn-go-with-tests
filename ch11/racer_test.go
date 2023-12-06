@@ -11,13 +11,8 @@ import (
 
 func TestRacer(t *testing.T) {
 	t.Run("compare two sites", func(t *testing.T) {
-		slowServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			time.Sleep(20 * time.Millisecond)
-			w.WriteHeader(http.StatusOK)
-		}))
-		fastServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			w.WriteHeader(http.StatusOK)
-		}))
+		slowServer := buildDelayedHttpServer(20 * time.Millisecond)
+		fastServer := buildDelayedHttpServer(0 * time.Millisecond)
 
 		slowUrl := slowServer.URL
 		fastUrl := fastServer.URL
@@ -33,6 +28,12 @@ func TestRacer(t *testing.T) {
 
 }
 
+func buildDelayedHttpServer(delay time.Duration) *httptest.Server {
+	return httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		time.Sleep(delay)
+		w.WriteHeader(http.StatusOK)
+	}))
+}
 func assertEqualStr(t *testing.T, got, want string) {
 	t.Helper()
 	if got != want {
