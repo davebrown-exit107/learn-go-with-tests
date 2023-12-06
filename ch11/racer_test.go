@@ -14,6 +14,9 @@ func TestRacer(t *testing.T) {
 		slowServer := buildDelayedHttpServer(20 * time.Millisecond)
 		fastServer := buildDelayedHttpServer(0 * time.Millisecond)
 
+		defer slowServer.Close()
+		defer fastServer.Close()
+
 		slowUrl := slowServer.URL
 		fastUrl := fastServer.URL
 
@@ -22,8 +25,6 @@ func TestRacer(t *testing.T) {
 
 		assertEqualStr(t, got, want)
 
-		slowServer.Close()
-		fastServer.Close()
 	})
 
 }
