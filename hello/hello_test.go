@@ -6,13 +6,53 @@ import (
 	"github.com/davebrown-exit107/learn-go-with-tests/hello"
 )
 
-func TestHello(t *testing.T) {
-	t.Run("say hello", func(t *testing.T) {
-		got := hello.Hello()
-		want := "hello, world"
+func assertStringsMatch(t testing.TB, want string, got string) {
+	t.Helper()
+	if want != got {
+		t.Errorf("wanted %q, got %q", want, got)
+	}
+}
+func TestHelloEn(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
+		got := hello.Hello("Dave", "EN")
+		want := "Hello, Dave"
 
-		if got != want {
-			t.Errorf("wanted %q got %q", got, want)
-		}
+		assertStringsMatch(t, want, got)
+	})
+	t.Run("say hello no name", func(t *testing.T) {
+		got := hello.Hello("", "EN")
+		want := "Hello, world"
+
+		assertStringsMatch(t, want, got)
+	})
+}
+
+func TestHelloEs(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
+		got := hello.Hello("Dave", "ES")
+		want := "Hola, Dave"
+
+		assertStringsMatch(t, want, got)
+	})
+	t.Run("say hello no name", func(t *testing.T) {
+		got := hello.Hello("", "ES")
+		want := "Hola, world"
+
+		assertStringsMatch(t, want, got)
+	})
+}
+
+func TestHelloFr(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
+		got := hello.Hello("Dave", "FR")
+		want := "Bonjour, Dave"
+
+		assertStringsMatch(t, want, got)
+	})
+	t.Run("say hello no name", func(t *testing.T) {
+		got := hello.Hello("", "FR")
+		want := "Bonjour, world"
+
+		assertStringsMatch(t, want, got)
 	})
 }
