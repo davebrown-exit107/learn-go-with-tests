@@ -6,7 +6,7 @@ import (
 	"github.com/davebrown-exit107/learn-go-with-tests/hello"
 )
 
-func assertStringsMatch(t *testing.T, want string, got string) {
+func assertStringsMatch(t testing.TB, want string, got string) {
 	t.Helper()
 	if want != got {
 		t.Errorf("wanted %q, got %q", want, got)
