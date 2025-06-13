@@ -2,9 +2,11 @@ package hello
 
 import "fmt"
 
-const enGreeting = "Hello"
-const esGreeting = "Hola"
-const frGreeting = "Bonjour"
+const (
+	enGreeting = "Hello"
+	esGreeting = "Hola"
+	frGreeting = "Bonjour"
+)
 
 func Hello(name string, lang string) string {
 	if name == "" {
