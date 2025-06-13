@@ -2,10 +2,13 @@ package hello
 
 import "fmt"
 
-func Hello() string {
-	return "hello, world"
+func Hello(name string) string {
+	if name == "" {
+		name = "world"
+	}
+	return fmt.Sprintf("hello, %s", name)
 }
 
 func main() {
-	fmt.Println(Hello())
+	fmt.Println(Hello(""))
 }

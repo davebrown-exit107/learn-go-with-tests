@@ -7,12 +7,20 @@ import (
 )
 
 func TestHello(t *testing.T) {
+	t.Run("say hello with a name", func(t *testing.T) {
+		got := hello.Hello("Dave")
+		want := "hello, Dave"
+
+		if got != want {
+			t.Errorf("wanted %q got %q", want, got)
+		}
+	})
 	t.Run("say hello", func(t *testing.T) {
-		got := hello.Hello()
+		got := hello.Hello("")
 		want := "hello, world"
 
 		if got != want {
-			t.Errorf("wanted %q got %q", got, want)
+			t.Errorf("wanted %q got %q", want, got)
 		}
 	})
 }
