@@ -4,6 +4,7 @@ import "fmt"
 
 const enGreeting = "Hello"
 const esGreeting = "Hola"
+const frGreeting = "Bonjour"
 
 func Hello(name string, lang string) string {
 	if name == "" {
@@ -16,10 +17,10 @@ func Hello(name string, lang string) string {
 		greeting = enGreeting
 	case "ES":
 		greeting = esGreeting
+	case "FR":
+		greeting = frGreeting
 	}
-	if lang == "EN" {
-		greeting = enGreeting
-	}
+
 	return fmt.Sprintf("%s, %s", greeting, name)
 }
 

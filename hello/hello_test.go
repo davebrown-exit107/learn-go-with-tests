@@ -13,13 +13,13 @@ func assertStringsMatch(t testing.TB, want string, got string) {
 	}
 }
 func TestHelloEn(t *testing.T) {
-	t.Run("say hello - with name", func(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
 		got := hello.Hello("Dave", "EN")
 		want := "Hello, Dave"
 
 		assertStringsMatch(t, want, got)
 	})
-	t.Run("say hello - no name", func(t *testing.T) {
+	t.Run("say hello no name", func(t *testing.T) {
 		got := hello.Hello("", "EN")
 		want := "Hello, world"
 
@@ -28,15 +28,30 @@ func TestHelloEn(t *testing.T) {
 }
 
 func TestHelloEs(t *testing.T) {
-	t.Run("say hello - with name", func(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
 		got := hello.Hello("Dave", "ES")
 		want := "Hola, Dave"
 
 		assertStringsMatch(t, want, got)
 	})
-	t.Run("say hello - no name", func(t *testing.T) {
+	t.Run("say hello no name", func(t *testing.T) {
 		got := hello.Hello("", "ES")
 		want := "Hola, world"
+
+		assertStringsMatch(t, want, got)
+	})
+}
+
+func TestHelloFr(t *testing.T) {
+	t.Run("say hello with name", func(t *testing.T) {
+		got := hello.Hello("Dave", "FR")
+		want := "Bonjour, Dave"
+
+		assertStringsMatch(t, want, got)
+	})
+	t.Run("say hello no name", func(t *testing.T) {
+		got := hello.Hello("", "FR")
+		want := "Bonjour, world"
 
 		assertStringsMatch(t, want, got)
 	})
