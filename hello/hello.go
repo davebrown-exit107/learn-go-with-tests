@@ -2,13 +2,27 @@ package hello
 
 import "fmt"
 
-func Hello(name string) string {
+const enGreeting = "Hello"
+const esGreeting = "Hola"
+
+func Hello(name string, lang string) string {
 	if name == "" {
 		name = "world"
 	}
-	return fmt.Sprintf("hello, %s", name)
+
+	var greeting string
+	switch lang {
+	case "EN":
+		greeting = enGreeting
+	case "ES":
+		greeting = esGreeting
+	}
+	if lang == "EN" {
+		greeting = enGreeting
+	}
+	return fmt.Sprintf("%s, %s", greeting, name)
 }
 
 func main() {
-	fmt.Println(Hello(""))
+	fmt.Println(Hello("", "EN"))
 }
