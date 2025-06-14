@@ -23,3 +23,11 @@ func BenchmarkRepeat(b *testing.B) {
 		iteration.Repeat("a", 4)
 	}
 }
+
+func ExampleRepeat() {
+	count := 4
+	value := "hello"
+	repeated := iteration.Repeat(value, count)
+	fmt.Println(repeated)
+	// Output: hellohellohellohello
+}
