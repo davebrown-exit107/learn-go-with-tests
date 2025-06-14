@@ -2,9 +2,11 @@ package iteration
 
 import "strings"
 
-func Repeat(value string) string {
+func Repeat(value string, count int) string {
 	var rValue strings.Builder
-	count := 4
+	if count <= 0 {
+		return ""
+	}
 	for i := 0; i < count; i++ {
 		rValue.WriteString(value)
 	}
