@@ -25,7 +25,3 @@ func Hello(name string, lang string) string {
 
 	return fmt.Sprintf("%s, %s", greeting, name)
 }
-
-func main() {
-	fmt.Println(Hello("", "EN"))
-}
