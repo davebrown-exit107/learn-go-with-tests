@@ -20,15 +20,31 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
-	numbersA := []int{1, 2, 3, 4, 5}
-	numbersB := []int{6, 7, 8, 9, 10}
-
-	got := arrays.SumAll(numbersA, numbersB)
-	want := []int{15, 40}
-
-	if !slices.Equal(got, want) {
-		t.Errorf("got %d want %d", got, want)
+	checkSlices := func(t testing.TB, got, want []int) {
+		t.Helper()
+		if !slices.Equal(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
 	}
+
+	t.Run("more than one slice", func(t *testing.T) {
+		numbersA := []int{1, 2, 3, 4, 5}
+		numbersB := []int{6, 7, 8, 9, 10}
+
+		got := arrays.SumAll(numbersA, numbersB)
+		want := []int{15, 40}
+
+		checkSlices(t, got, want)
+	})
+	t.Run("empty slices", func(t *testing.T) {
+		numbersA := []int{}
+		numbersB := []int{6, 7, 8, 9, 10}
+
+		got := arrays.SumAll(numbersA, numbersB)
+		want := []int{0, 40}
+
+		checkSlices(t, got, want)
+	})
 }
 
 func ExampleSumAll() {
