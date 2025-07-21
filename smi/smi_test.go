@@ -16,6 +16,15 @@ func TestPerimeter(t *testing.T) {
 			t.Errorf("got %.2f want %.2f", got, want)
 		}
 	})
+	t.Run("circle", func(t *testing.T) {
+		circle := smi.Circle{Radius: 10.0}
+		got := circle.Perimeter()
+		want := 62.83185307179586
+
+		if got != want {
+			t.Errorf("got %v want %v", got, want)
+		}
+	})
 }
 
 func TestArea(t *testing.T) {
@@ -23,6 +32,15 @@ func TestArea(t *testing.T) {
 		rect := smi.Rectangle{Height: 10.0, Width: 10.0}
 		got := rect.Area()
 		want := 100.0
+
+		if got != want {
+			t.Errorf("got %.2f want %.2f", got, want)
+		}
+	})
+	t.Run("circle", func(t *testing.T) {
+		circle := smi.Circle{Radius: 10.0}
+		got := circle.Area()
+		want := 314.1592653589793
 
 		if got != want {
 			t.Errorf("got %.2f want %.2f", got, want)
