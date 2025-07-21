@@ -1,3 +1,9 @@
+## 0.2.0 (2025-07-21)
+
+### Feat
+
+- **smi**: add function to calculate perimeter
+
 ## 0.1.0 (2025-07-21)
 
 ### Feat
