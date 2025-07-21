@@ -1,7 +1,6 @@
 package arrays
 
-func Sum(numbers [5]int) int {
-	var sum int
+func Sum(numbers [5]int) (sum int) {
 	for _, val := range numbers {
 		sum += val
 	}
