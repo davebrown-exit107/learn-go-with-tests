@@ -13,35 +13,37 @@ func assertEqual(t testing.TB, got, want float64) {
 	}
 }
 func TestPerimeter(t *testing.T) {
+	checkPerimeter := func(t testing.TB, shape smi.Shape, want float64) {
+		t.Helper()
+		got := shape.Perimeter()
+		assertEqual(t, got, want)
+	}
 	t.Run("rectangle", func(t *testing.T) {
 		rect := smi.Rectangle{Height: 10.0, Width: 10.0}
-		got := rect.Perimeter()
 		want := 40.0
-
-		assertEqual(t, got, want)
+		checkPerimeter(t, rect, want)
 	})
 	t.Run("circle", func(t *testing.T) {
 		circle := smi.Circle{Radius: 10.0}
-		got := circle.Perimeter()
 		want := 62.83185307179586
-
-		assertEqual(t, got, want)
+		checkPerimeter(t, circle, want)
 	})
 }
 
 func TestArea(t *testing.T) {
+	checkArea := func(t testing.TB, shape smi.Shape, want float64) {
+		t.Helper()
+		got := shape.Area()
+		assertEqual(t, got, want)
+	}
 	t.Run("rectangle", func(t *testing.T) {
 		rect := smi.Rectangle{Height: 10.0, Width: 10.0}
-		got := rect.Area()
 		want := 100.0
-
-		assertEqual(t, got, want)
+		checkArea(t, rect, want)
 	})
 	t.Run("circle", func(t *testing.T) {
 		circle := smi.Circle{Radius: 10.0}
-		got := circle.Area()
 		want := 314.1592653589793
-
-		assertEqual(t, got, want)
+		checkArea(t, circle, want)
 	})
 }
