@@ -25,6 +25,11 @@ func TestPerimeter(t *testing.T) {
 			input: smi.Circle{10.0},
 			want:  62.83185307179586,
 		},
+		"triangle": {
+			// not implemented
+			input: smi.Triangle{12, 6},
+			want:  0.0,
+		},
 	}
 	for name, test := range testCases {
 		t.Run(name, func(t *testing.T) {
@@ -46,6 +51,10 @@ func TestArea(t *testing.T) {
 		"circle": {
 			input: smi.Circle{10.0},
 			want:  314.1592653589793,
+		},
+		"triangle": {
+			input: smi.Triangle{12, 6},
+			want:  36.0,
 		},
 	}
 
