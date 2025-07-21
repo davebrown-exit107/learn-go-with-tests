@@ -31,6 +31,13 @@ func TestSumAll(t *testing.T) {
 	}
 }
 
+func ExampleSumAll() {
+	numbersA := []int{1, 2, 3, 4, 5}
+	numbersB := []int{6, 7, 8, 9, 10}
+	sum := arrays.SumAll(numbersA, numbersB)
+	fmt.Println(sum)
+	// Output: [15 40]
+}
 func ExampleSum() {
 	numbers := []int{1, 2, 3, 4, 5}
 	sum := arrays.Sum(numbers)
