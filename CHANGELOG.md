@@ -1,3 +1,14 @@
+## 0.1.0 (2025-07-21)
+
+### Feat
+
+- **arrays**: add function to sum multiple slices
+- **arrays**: add function to sum contents of array
+
+### Refactor
+
+- **arrays**: simplify SumAll() function
+
 ## 0.0.2 (2025-06-14)
 
 ### Perf
