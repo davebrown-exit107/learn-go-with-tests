@@ -7,7 +7,8 @@ import (
 )
 
 func TestPerimeter(t *testing.T) {
-	got := smi.Perimeter(10.0, 10.0)
+	input := smi.Rectangle{Height: 10.0, Width: 10.0}
+	got := smi.Perimeter(input)
 	want := 40.0
 
 	if got != want {
@@ -16,7 +17,8 @@ func TestPerimeter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	got := smi.Area(10.0, 10.0)
+	input := smi.Rectangle{Height: 10.0, Width: 10.0}
+	got := smi.Area(input)
 	want := 100.0
 
 	if got != want {
