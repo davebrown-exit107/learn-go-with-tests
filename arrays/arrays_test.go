@@ -31,3 +31,10 @@ func TestSum(t *testing.T) {
 	})
 
 }
+
+func ExampleSum() {
+	numbers := []int{1, 2, 3, 4, 5}
+	sum := arrays.Sum(numbers)
+	fmt.Println(sum)
+	// Output: 15
+}
