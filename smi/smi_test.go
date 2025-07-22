@@ -8,9 +8,6 @@ import (
 
 func assertEqual(t testing.TB, got, want float64) {
 	t.Helper()
-	if got != want {
-		t.Errorf("got %v want %v", got, want)
-	}
 }
 func TestPerimeter(t *testing.T) {
 	testCases := map[string]struct {
@@ -34,7 +31,9 @@ func TestPerimeter(t *testing.T) {
 	for name, test := range testCases {
 		t.Run(name, func(t *testing.T) {
 			got := test.input.Perimeter()
-			assertEqual(t, got, test.want)
+			if got != test.want {
+				t.Errorf("%#v got %v want %v", test.input, got, test.want)
+			}
 		})
 	}
 }
@@ -61,7 +60,9 @@ func TestArea(t *testing.T) {
 	for name, test := range testCases {
 		t.Run(name, func(t *testing.T) {
 			got := test.input.Area()
-			assertEqual(t, got, test.want)
+			if got != test.want {
+				t.Errorf("%#v got %v want %v", test.input, got, test.want)
+			}
 		})
 	}
 }
