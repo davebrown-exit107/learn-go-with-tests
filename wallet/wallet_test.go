@@ -1,7 +1,6 @@
 package wallet_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/davebrown-exit107/learn-go-with-tests/wallet"
@@ -16,7 +15,7 @@ func TestWallet(t *testing.T) {
 	want := wallet.Bitcoin(10)
 
 	if got != want {
-		fmt.Errorf("got %d want %d", got, want)
+		t.Errorf("got %d want %d", got, want)
 	}
 
 }
