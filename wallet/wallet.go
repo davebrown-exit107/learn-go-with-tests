@@ -1,6 +1,10 @@
 package wallet
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/pkg/errors"
+)
 
 type Bitcoin int
 
@@ -16,12 +20,21 @@ type Wallet struct {
 	balance Bitcoin
 }
 
-func (w *Wallet) Deposit(amount Bitcoin) {
+func (w *Wallet) Deposit(amount Bitcoin) error {
+	if amount < 0 {
+		return errors.New("deposit is less than zero")
+	}
 	w.balance += amount
+	return nil
 }
 
-func (w *Wallet) Withdraw(amount Bitcoin) {
-	w.balance -= amount
+func (w *Wallet) Withdraw(amount Bitcoin) error {
+	if amount <= w.balance {
+		w.balance -= amount
+		return nil
+	} else {
+		return errors.New("withdrawl is larger than the balance of the account")
+	}
 }
 
 func (w *Wallet) Balance() Bitcoin {
