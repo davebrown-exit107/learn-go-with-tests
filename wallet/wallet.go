@@ -6,6 +6,9 @@ import (
 	"github.com/pkg/errors"
 )
 
+var ErrInsufficientFunds = errors.New("insufficient funds")
+var ErrDepositLessThanZero = errors.New("deposit is less than zero")
+
 type Bitcoin int
 
 type Stringer interface {
@@ -22,7 +25,7 @@ type Wallet struct {
 
 func (w *Wallet) Deposit(amount Bitcoin) error {
 	if amount < 0 {
-		return errors.New("deposit is less than zero")
+		return ErrDepositLessThanZero
 	}
 	w.balance += amount
 	return nil
@@ -33,7 +36,7 @@ func (w *Wallet) Withdraw(amount Bitcoin) error {
 		w.balance -= amount
 		return nil
 	} else {
-		return errors.New("insufficient funds")
+		return ErrInsufficientFunds
 	}
 }
 
