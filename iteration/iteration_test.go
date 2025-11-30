@@ -13,7 +13,7 @@ func TestRepeat(t *testing.T) {
 		want := "aaaa"
 
 		if got != want {
-			fmt.Errorf("wanted %q, got %q", want, got)
+			t.Errorf("wanted %q, got %q", want, got)
 		}
 	})
 	t.Run("repeat zero", func(t *testing.T) {
@@ -21,7 +21,7 @@ func TestRepeat(t *testing.T) {
 		want := ""
 
 		if got != want {
-			fmt.Errorf("wanted %q, got %q", want, got)
+			t.Errorf("wanted %q, got %q", want, got)
 		}
 	})
 }

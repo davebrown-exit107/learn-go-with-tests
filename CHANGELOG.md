@@ -1,3 +1,15 @@
+## 0.3.0 (2025-11-29)
+
+### Feat
+
+- **wallet**: add withdrawl function
+- **wallet**: add string output to bitcoin type
+- **wallet**: make the use of bitcoin explicit
+
+### Refactor
+
+- **wallet**: move errors into vars
+
 ## 0.2.0 (2025-07-21)
 
 ### Feat
