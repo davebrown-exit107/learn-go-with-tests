@@ -34,6 +34,15 @@ func TestWallet(t *testing.T) {
 		}
 	}
 
+	t.Run("stringify bitcoin", func(t *testing.T) {
+		test_bitcoin := wallet.Bitcoin(10)
+		got := test_bitcoin.String()
+		want := "10 BTC"
+		if got != want {
+			t.Errorf("wanted %q got %q", want, got)
+		}
+	})
+
 	t.Run("deposit", func(t *testing.T) {
 		test_wallet := wallet.Wallet{}
 		err := test_wallet.Deposit(wallet.Bitcoin(10))
