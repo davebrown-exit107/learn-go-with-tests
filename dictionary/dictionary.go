@@ -1,5 +1,5 @@
 package dictionary
 
-func Search(string, map[string]string) string {
-	return ""
+func Search(search_term string, dictionary map[string]string) string {
+	return dictionary[search_term]
 }
